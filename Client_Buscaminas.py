@@ -2,7 +2,7 @@ import socket
 import random
 import json
 
-HOST = "127.0.0.1"
+HOST = "192.168.0.98"
 PORT = 65432
 buffer_size = 1024
 
@@ -98,6 +98,7 @@ def juego():
             if data['estatus'] == 'PierdeCliente':
                 imprimir_tablero(data['tablero'], True)
                 print(rojo + data['msj'] + reset + '\n') # Perdiste!
+                print(f'Tiempo de partida: {morado}{data["tiempo"]:.2f}{reset} segundos')
                 exit()
             elif data['estatus'] == 'RepiteCliente':
                 print(rojo + data['msj'] + reset) # Repite
@@ -106,6 +107,7 @@ def juego():
                 if data['estatus'] == 'GanaCliente':
                     imprimir_tablero(data['tablero'], fin=True)
                     print(verde + data['msj'] + reset + '\n')
+                    print(f'Tiempo de partida: {morado}{data["tiempo"]:.2f}{reset} segundos')
                     break
                 else:
                     imprimir_tablero(data['tablero'])
